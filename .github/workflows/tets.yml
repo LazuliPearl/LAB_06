@@ -25,7 +25,7 @@ jobs:
           cd solver_application/build/
           cpack -G TGZ
           cd ../..
-          mv solver_application/build/*.tar.gz artifacts
+          mv solver_application/build/*.tar.gz testovaya
           
       - name: pack ZIP
         shell: bash
@@ -33,7 +33,7 @@ jobs:
           cd solver_application/build/
           cpack -G ZIP          
           cd ../..
-          mv solver_application/build/*.zip artifacts
+          mv solver_application/build/*.zip testovaya
           
       - name: pack DEB
         shell: bash
@@ -41,7 +41,7 @@ jobs:
           cd solver_application/build/
           cpack -G DEB
           cd ../..
-          mv solver_application/build/*.deb artifacts
+          mv solver_application/build/*.deb testovaya
           
       - name: pack RPM
         shell: bash
@@ -49,7 +49,7 @@ jobs:
           cd solver_application/build/
           cpack -G RPM
           cd ../..
-          mv solver_application/build/*.rpm artifacts
+          mv solver_application/build/*.rpm testovaya
           
       - name: push on
         shell: bash
@@ -91,7 +91,7 @@ jobs:
           cd solver_application/build/
           cpack -G DragNDrop
           cd ../..
-          mv solver_application/build/*.dmg artifacts
+          mv solver_application/build/*.dmg testovaya
           
       - name: push on
         shell: bash
@@ -121,7 +121,7 @@ jobs:
           cd solver_application/build/
           cpack -G WIX
           cd ../..
-          mv solver_application/build/*.msi artifacts
+          mv solver_application/build/*.msi testovaya
           
       - name: push on
         run: |
