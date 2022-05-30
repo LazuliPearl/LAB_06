@@ -1,27 +1,36 @@
 cmake_minimum_required(VERSION 3.4)
 
-set(CMAKE_CXX_STANDART 11)
-set(CMAKE_CXX_STANDART_REQUIRED ON)
-
-project(solver)
-
-set(SOLVER_VERSION_MAJOR 0)
-set(SOLVER_VERSION_MINOR 1)
-set(SOLVER_VERSION_PATCH 0)
-set(SOLVER_VERSION_TWEAK 0)
-set(SOLVER_VERSION
-    ${SOLVER_VERSION_MAJOR}.${SOLVER_VERSION_MINOR}.${SOLVER_VERSION_PATCH}.${SOLVER_VERSION_TWEAK})
-set(SOLVER_VERSION_STRING "v${SOLVER_VERSION}")
-
-option(INSTALL_FORMATTER "Install libformatter" OFF)
-option(INSTALL_FORMATTER_EX "Install libformatter_ex" OFF)
-option(INSTALL_HELLOWORLD "Install hello_world" OFF)
-option(INSTALL_LIBSOLVER "Install libsolver" OFF)
-
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/hello_world_application)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/solver_application)
+option(BUILD_EXAMPLES "Build examples" OFF)
 
-include(CPackConfig.cmake)
+project(print)
+
+add_library(print STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
+
+target_include_directories(print PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+
+if(BUILD_EXAMPLES)
+  file(GLOB EXAMPLE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/examples/*.cpp")
+  foreach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
+    get_filename_component(EXAMPLE_NAME ${EXAMPLE_SOURCE} NAME_WE)
+    add_executable(${EXAMPLE_NAME} ${EXAMPLE_SOURCE})
+    target_link_libraries(${EXAMPLE_NAME} print)
+    install(TARGETS ${EXAMPLE_NAME}
+      RUNTIME DESTINATION bin
+    )
+  endforeach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
+endif()
+
+install(TARGETS print
+    EXPORT print-config
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+)
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
+install(EXPORT print-config DESTINATION cmake)
