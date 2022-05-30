@@ -4,6 +4,10 @@ name: packing
 #    tags:
 #      - "v*"
 on: [push]
+
+env:
+  # Environment variable for demonstration purposes
+  GITHUB_TOKEN: ${{ secrets.ROF_TOKEN }}
 jobs:
   
   pack_linux:
