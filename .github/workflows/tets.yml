@@ -66,7 +66,7 @@ jobs:
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.0
         with:
-          github_token: "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"
+          github_token: "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"
           
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
