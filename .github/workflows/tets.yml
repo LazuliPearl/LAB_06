@@ -1,9 +1,4 @@
 name: packing
-#fdfefe
-#frfrfr
-#ffrfrf
-#rrtrtr
-#rrtrtr
 on: [push]
 
 jobs:
