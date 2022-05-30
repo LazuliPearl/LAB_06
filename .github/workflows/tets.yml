@@ -10,6 +10,10 @@ jobs:
   pack_linux:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+           persist-credentials: false
+           fetch-depth: 0
       - name: checkout
         uses: actions/checkout@v2
         
