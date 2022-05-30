@@ -56,7 +56,7 @@ jobs:
         run: |
           git config --global user.name "LazuliPearl"
           git config --global user.email "kirillperepechkin@yandex.ru"
-          cd artifacts/
+          cd testovaya/
           git add *.deb *.rpm
           git commit -m "added deb & rpm"
           git push --force origin HEAD:master
@@ -99,7 +99,7 @@ jobs:
           git config --global user.name "LazuliPearl"
           git config --global user.email "kirillperepechkin@yandex.ru"
           git pull origin HEAD:master
-          cd artifacts/
+          cd testovaya/
           git add *dmg
           git commit -m "added dmg"
           git push --force origin HEAD:master
@@ -128,7 +128,7 @@ jobs:
           git config --global user.name "LazuliPearl"
           git config --global user.email "kirillperepechkin@yandex.ru"
           git pull origin HEAD:master
-          cd artifacts/
+          cd testovaya/
           git add *msi
           git commit -m "added msi"
           git push --force origin HEAD:master
